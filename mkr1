@@ -1,0 +1,35 @@
+# Функція для обчислення середнього значення в рядку
+def calculate_average(row):
+    total = 0
+    count = 0
+    for element in row:
+        total += element
+        count += 1
+    return total / count
+
+# Зчитуємо розмірність масиву від користувача
+n = int(input("Введіть розмірність масиву (NxN): "))
+
+# Ініціалізуємо пустий масив розмірністю NxN
+array = []
+
+# Зчитуємо елементи масиву від користувача
+for i in range(n):
+    row = []
+    for j in range(n):
+        row.append(int(input(f"Введіть елемент масиву [{i}][{j}]: ")))
+    array.append(row)
+
+# Обчислюємо середні значення для кожного рядку та індексуємо їх
+averages = [(calculate_average(row), i) for i, row in enumerate(array)]
+
+# Сортуємо масив за зростанням середніх значень
+averages.sort()  # Сортуємо за першими значеннями кортежів (середніми значеннями)
+
+# Створюємо новий відсортований масив
+sorted_array = [array[i] for _, i in averages]
+
+# Виводимо відсортований масив
+print("Відсортований масив:")
+for row in sorted_array:
+    print(row)
